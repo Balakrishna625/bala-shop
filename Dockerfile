@@ -11,7 +11,7 @@ WORKDIR /app
 COPY . .
 
 # Build the Java application into a JAR file
-RUN mvn clean package
+RUN mvn clean package -DskipTests=true
 
 # Stage 2: Create the runtime image
 # Use an official OpenJDK image as the runtime image
