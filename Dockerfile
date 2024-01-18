@@ -1,7 +1,6 @@
 # Stage 1: Build the application
 # Use an official Maven image to build the Java application
 # Adjusted the tag to a more general one that includes JDK 8
-
 FROM maven:3.6-jdk-8 AS builder
 
 # Set the working directory inside the container for building
@@ -21,7 +20,10 @@ FROM openjdk:8u151-jdk-alpine3.7
 EXPOSE 8070
 
 # Set the environment variable for the application home
-WORKDIR /usr/src/app
+ENV APP_HOME /usr/src/app
+
+# Set the working directory inside the container for the runtime
+WORKDIR $APP_HOME
 
 # Copy the built JAR file from the builder stage
 COPY --from=builder /app/target/shopping-cart-0.0.1-SNAPSHOT.jar app.jar
